@@ -1,6 +1,6 @@
 {
   "name": "auto-update-app",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "boilerplate for auto update",
   "main": "main.js",
   "scripts": {
