@@ -9,6 +9,9 @@ const {
 
 let mainWindow;
 
+let updating = false;
+
+
 function createWindow() {
     mainWindow = new BrowserWindow({
         width: 800,
@@ -23,7 +26,11 @@ function createWindow() {
     });
 
     mainWindow.once('ready-to-show', () => {
-        autoUpdater.checkForUpdatesAndNotify();
+        setInterval(() => {
+            if(!updating)
+           autoUpdater.checkForUpdatesAndNotify(); 
+        }, 20000);
+        
       });
 }
 
@@ -50,9 +57,11 @@ ipcMain.on("app_version", (event) => {
 });
 
 autoUpdater.on('update-available', () => {
+    updating=true;
     mainWindow.webContents.send('update_available');
   });
   autoUpdater.on('update-downloaded', () => {
+    updating=true;
     mainWindow.webContents.send('update_downloaded');
   });
 
