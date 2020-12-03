@@ -1,0 +1,151 @@
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  margin: 0;
+  /* max-width: 38rem; */
+  /* padding: 2rem; */
+  user-select: none;
+  /* background-color: gainsboro; */
+  /* overflow: hidden; */
+}
+
+#cliplist,
+#settings,
+#info {
+  /* width: 100%; */
+  display: none;
+  grid-area: content;
+}
+/* ?? */
+.cliplist {
+  display: initial;
+}
+
+.mynav {
+  /* display: none; */
+  grid-area: nav;
+  /* grid-column: 1;
+  grid-row: 1; */
+  flex-direction: row;
+  /* margin-left: auto; */
+}
+
+.nav__item {
+
+  margin-left: 1rem;
+}
+
+.nav__item:hover i {
+  color: cornflowerblue;
+  cursor: pointer;
+}
+
+#menu_bonus:hover i {
+  color: red;
+
+}
+
+.main {
+
+
+  display: grid;
+  /* grid-template-rows:auto 95% ; */
+  grid-template-areas: "nav nav nav"
+    "content  content content"
+    "content  content content"
+    "content  content content";
+
+}
+
+
+
+#settings {
+  display: none;
+}
+
+.nav_list {
+  /* margin-top: 15px; */
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+
+}
+
+.nav__item>div {
+  display: none;
+}
+
+i {
+  font-size: 23px;
+}
+
+
+
+@media (prefers-color-scheme: dark) {
+
+  body {
+    background: #333;
+    color: white;
+  }
+
+  .clip__item:hover {
+    background-color: rgb(87, 80, 71);
+  }
+
+  .clip__item.menu-list-item-active:hover {
+    background-color: cornflowerblue;
+  }
+
+  .menu-list-item-active {
+    background-color: cornflowerblue;
+  }
+
+  /* .night.dark-scheme { background: black; color:  #ddd; } */
+}
+
+@media (prefers-color-scheme: light) {
+  .menu-list-item-active {
+    background-color: lightgreen;
+  }
+
+  body {
+    background: white;
+    color: #212121;
+  }
+
+  .clip__item:hover {
+    background-color: antiquewhite;
+  }
+
+  .clip__item.menu-list-item-active:hover {
+    background-color: lightgreen;
+  }
+
+  /* .night.light-scheme { background:  #eee; color: black; } */
+}
+
+/* Minimum aspect ratio */
+/* @media (min-width: 350px) {
+  .main {
+    grid-template-areas: 
+    "nav      nav     nav"
+    "content  content content"
+    "content  content content"
+    "content  content content"
+    ;
+  }
+} */
+
+/* Maximum aspect ratio */
+@media (max-width: 350px) {
+  .main {
+    grid-template-areas: 
+    "content  content content"
+    "content  content content"
+    "content  content content"
+    "nav      nav     nav"
+    ;
+  }
+}
+ 

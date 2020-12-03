@@ -1,6 +1,6 @@
 {
   "name": "electron_call-help",
-  "version": "1.0.0",
+  "version": "1.0.8",
   "description": "my new callhelp app",
   "main": "main.js",
   "scripts": {
@@ -25,9 +25,12 @@
   "homepage": "https://github.com/Galionix/electron_Call-Help#readme",
   "devDependencies": {
     "electron": "^11.0.3",
-    "electron-builder": "^22.9.1"
+    "electron-builder": "^22.9.1",
+    "electron-reloader": "^1.1.0",
+    "jquery": "^3.5.1"
   },
   "dependencies": {
+    "jquery": "^3.5.1",
     "electron-updater": "^4.3.5"
   }
 }

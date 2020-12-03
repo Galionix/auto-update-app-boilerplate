@@ -1,77 +1,156 @@
 <!DOCTYPE html>
-<head>
-  <title>Electron Auto Update Example</title>
-  <style>
-    body {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 20px;
-      font-family: sans-serif;
-      background-color: #eaeaea;
-      text-align: center;
-    }
-    #notification {
-        position: fixed;
-        bottom: 20px;
-        left: 20px;
-        width: 200px;
-        padding: 20px;
-        border-radius: 5px;
-        background-color: white;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-      }
-      .hidden {
-        display: none;
-      }
-  </style>
-</head>
-<body>
-  <h1>Electron RepeatingAuto Update Example</h1>
-  <p id="version"></p>
-  <div id="notification" class="hidden">
-    <p id="message"></p>
-    <button id="close-button" onClick="closeNotification()">
-      Close
-    </button>
-    <button id="restart-button" onClick="restartApp()" class="hidden">
-      Restart
-    </button>
-  </div>
-  <script>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+
+    <link rel="stylesheet" href="styles/css/index.css">
+    <link rel="stylesheet" href="styles/css/light.css">
+    <link rel="stylesheet" href="styles/css/fontawesome.min.css">
+    <script src="js/vendor/jquery-3.5.1.min.js"></script>
+    <script>
+      window.jQuery = window.$ = require('jquery');
+    </script>
+  </head>
+
+  <body>
+    <div class="main">
+
+
+      <div class="mynav">
+        <ul class="nav_list">
+          <li id="menu_cliplist" class="nav__item stats">
+            <!-- <span class="fa-stack fa-2x">
+              <i class="fal fa-square fa-stack-2x"></i>
+            </span> -->
+            <i class="fal fa-phone"></i>
+
+            <div class="">Статусы</div>
+          </li>
+          <li id="menu_settings" class="nav__item settings">
+            <!-- <span class="fa-stack fa-2x">
+              <i class="fal fa-square fa-stack-2x"></i>
+            </span> -->
+            <i class="fal fa-cog"></i>
+
+            <div class="">Настройки</div>
+          </li>
+          <li id="menu_chat" class=" nav__item chat">
+            <!-- <i class="fal fa-phone"></i> -->
+            <!-- <span class="fa-stack fa-2x">
+              <i class="fal fa-square fa-stack-2x"></i>
+            </span> -->
+            <i class="fal fa-comment-alt-dots"></i>
+
+            <div class="">Чат</div>
+          </li>
+          <li id="menu_bonus" class=" nav__item bonus">
+            <!-- <span class="fa-stack fa-2x"> -->
+              <!-- <i class="fal fa-square fa-stack-2x "></i> -->
+              
+            <!-- </span> -->
+<i title="some hint!" class="fal fa-skull fa-spin"></i>
+            <div class="">Бонус</div>
+          </li>
+
+          <li id="menu_info" class=" nav__item info">
+            <i class="fal fa-info"></i>
+            <!-- <span class="fa-stack fa-2x">
+              <i class="fal fa-square fa-stack-2x"></i>
+              
+            </span> -->
+            <div class="">Инфо</div>
+          </li>
+        </ul>
+
+      </div>
+
+
+      <div id="cliplist" class="cliplist">
+        <div class="clip__item">нет ответа</div>
+        <div class="clip__item">нет ответа + письмо отправлено </div>
+        <div class="clip__item">автоответчик</div>
+        <div class="clip__item">автоответчик + письмо отправлено</div>
+        <div class="clip__item">поднял(а) трубку, тишина</div>
+        <div class="clip__item">бросил(а) трубку</div>
+        <div class="clip__item">бросил(а) трубку + письмо отправлено </div>
+        <div class="clip__item">номер не существует</div>
+        <div class="clip__item">контакты не игрока</div>
+        <div class="clip__item">не интересует </div>
+        <div class="clip__item">не гражданин РФ</div>
+        <div class="clip__item">нет 18 лет </div>
+        <div class="clip__item">перезвонить </div>
+        <div class="clip__item">перезвонить уточнить прошел ли ИД</div>
+        <div class="clip__item">проинформирован + письмо </div>
+        <div class="clip__item">проходит ИД + письмо отправлено </div>
+        <div class="clip__item">пройдет ИД позже + письмо </div>
+        <div class="clip__item">передумал проходить ИД </div>
+        <div class="clip__item">прошел ид +письмо</div>
+        <div class="clip__item">------</div>
+        <div class="clip__item">письмо отправлено</div>
+      </div>
+      <div id="settings" class="page">
+        <h1>hi this is settings!</h1>
+        <p>Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты. Курсивных это рыбного рыбными все, семантика пор текстов океана эта послушавшись которой о страна буквенных своего домах силуэт маленькая жаренные использовало гор вскоре речью строчка, составитель переписывается взобравшись. Дороге, ручеек продолжил? Назад собрал всемогущая агентство, текст города пустился власти снова.</p>
+        
+      </div>
+      <div id="chat" >
+
+      </div>
+      <div id="bonus" class="page">
+        <br>
+        <h2>Electron Auto Update Example</h2>
+        <!-- <p id="version"></p> -->
+
+      </div>
+      
+      <div id="info" class="page">
+        <h1 id="version" class="title"></h1>
+
+        <p>Эта программа копирует в буфер обмена пункт на который нажимаешь!</p>
+        <br>
+        <p>
+
+          Мы используем Node <script>document.write(process.versions.node)</script>,
+          Chrome <script>document.write(process.versions.chrome)</script>,
+          и Electron <script>document.write(process.versions.electron)</script>.
+        </p>
+        <br>
+        <p>Отзывы, предложения, и сообщения об ошибках направьте <a class="open-in-browser" href="https://github.com/Galionix/electron_Call-Help/issues">сюда</a> </p>
+     <br>
+     <p> <a href="https://github.com/Galionix/electron_Call-Help/releases" class="open-in-browser">Все релизы</a> (на случай если ваш ломаетс)</p>
+      <br>
+      <p><a href="https://github.com/Galionix/electron_Call-Help" class="open-in-browser">Страничка</a> приложения.</p>
+     </div>
+    </div>
 
 
 
-    const { ipcRenderer } = require('electron');
-    const version = document.getElementById('version');
-    
-    ipcRenderer.send('app_version');
-    ipcRenderer.on('app_version', (event, arg) => {
-      ipcRenderer.removeAllListeners('app_version');
-      version.innerText = 'Version ' + arg.version;
-    });
-    const notification = document.getElementById('notification');
-const message = document.getElementById('message');
-const restartButton = document.getElementById('restart-button');
-ipcRenderer.on('update_available', () => {
-  ipcRenderer.removeAllListeners('update_available');
-  message.innerText = 'A new update is available. Downloading now...';
-  notification.classList.remove('hidden');
-});
-ipcRenderer.on('update_downloaded', () => {
-  ipcRenderer.removeAllListeners('update_downloaded');
-  message.innerText = 'Update Downloaded. It will be installed on restart. Restart now?';
-  restartButton.classList.remove('hidden');
-  notification.classList.remove('hidden');
-});
+    <div id="notification_update" class="hidden">
+      <p id="message"></p>
+      <button id="close-button"  title="Close" onClick="closeNotification()">
+        <i class="fal fa-times-circle fa-lg"></i>
+      </button>
+      <button id="restart-button" onClick="restartApp()" class="hidden">
+        <i class="fal fa-redo"></i>
+        Restart
+      </button>
+    </div>
+
+  </body>
+
+  <script >
 
 
-function closeNotification() {
-  notification.classList.add('hidden');
-}
-function restartApp() {
-  ipcRenderer.send('restart_app');
-}
 
 
-  </script>
-</body>
+</script>
+
+<script>window.$ = window.jQuery = require('jquery');</script>  
+
+
+<script src="js/script.js"></script>
+<script src="js/update_handler.js"></script>
+
+</html>
