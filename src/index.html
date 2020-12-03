@@ -38,6 +38,9 @@
     </button>
   </div>
   <script>
+
+
+
     const { ipcRenderer } = require('electron');
     const version = document.getElementById('version');
     
@@ -68,6 +71,7 @@ function closeNotification() {
 function restartApp() {
   ipcRenderer.send('restart_app');
 }
+
 
   </script>
 </body>
