@@ -48,20 +48,19 @@ table {
 }
 
 body {
-  -webkit-transition: ease-in-out 2000ms;
-  transition: ease-in-out 2000ms;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   margin: 0;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  background-color: rgba(255, 255, 255, 0.01);
 }
 
 body .open-in-browser::after {
   font-family: "Font Awesome 5 Pro";
   content: " \f08e";
+}
+
+body textarea {
+  resize: vertical;
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
 }
 
 body .title {
@@ -84,40 +83,6 @@ body a:hover {
   color: #1ec71e;
 }
 
-body #notification_update {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  width: 200px;
-  padding: 20px;
-  border-radius: 5px;
-  background-color: white;
-  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-}
-
-body #notification_update #restart-button {
-  float: left;
-  border: 0;
-  cursor: pointer;
-  background-color: lightpink;
-  border-radius: 5px;
-}
-
-body #notification_update #close-button {
-  cursor: pointer;
-  background-color: transparent;
-  outline: none;
-  border: 0;
-  position: absolute;
-  top: 5px;
-  left: calc(100% - 30px);
-}
-
-body #notification_update #close-button:hover i {
-  color: tomato;
-}
-
 body .hidden {
   display: none;
 }
@@ -133,6 +98,7 @@ body div.main {
 }
 
 body div.main > div.mynav {
+  margin: 0.2rem;
   -ms-grid-row: 1;
   -ms-grid-column: 1;
   grid-area: nav;
@@ -144,6 +110,7 @@ body div.main > div.mynav {
 }
 
 body div.main > div.mynav > ul.nav_list {
+  padding-right: 1rem;
   list-style: none;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -158,6 +125,8 @@ body div.main > div.mynav > ul.nav_list {
 }
 
 body div.main > div.mynav > ul.nav_list .nav__item {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   margin-left: 1rem;
 }
 
@@ -180,9 +149,18 @@ body div.main > div.mynav > ul.nav_list > li#menu_bonus:hover i {
 }
 
 body div.main #cliplist {
+  cursor: default;
   -ms-grid-row: 2;
   -ms-grid-column: 1;
   grid-area: content;
+}
+
+body div.main #cliplist ::-moz-selection {
+  background: transparent;
+}
+
+body div.main #cliplist ::selection {
+  background: transparent;
 }
 
 body div.main #settings,
@@ -235,78 +213,169 @@ body div.main > div#bonus .hidden {
   display: none;
 }
 
+#notification_update {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 200px;
+  padding: 20px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+#notification_update #restart-button {
+  margin-top: 1rem;
+  width: 100%;
+  padding: 0.3rem;
+  border: 0;
+  cursor: pointer;
+  background-color: lightpink;
+  border-radius: 5px;
+  -webkit-transition: ease-in-out 300ms;
+  transition: ease-in-out 300ms;
+}
+
+#notification_update #restart-button:hover {
+  background-color: #d3707f;
+}
+
+#notification_update #close-button {
+  cursor: pointer;
+  background-color: transparent;
+  outline: none;
+  border: 0;
+  position: absolute;
+  top: 5px;
+  left: calc(100% - 30px);
+}
+
+#notification_update #close-button:hover i {
+  color: tomato;
+}
+
 @media (prefers-color-scheme: dark) {
-  body,
-  body * {
-    color: white;
+  textarea {
+    background-color: #212121;
+    color: #ffffff;
   }
-  body:hover,
-  body *:hover {
-    -webkit-transition: ease-in 1000ms;
-    transition: ease-in 1000ms;
-    background: #333;
+  #notification_update {
+    background-color: #212121;
+  }
+  #notification_update #close-button {
+    color: #ffffff;
+  }
+  body {
+    color: #ffffff;
+  }
+  .mynav {
+    color: rgba(230, 230, 230, 0.275);
+    background-color: rgba(255, 255, 255, 0.275);
+  }
+  .mynav .nav__item {
+    -webkit-transition: ease-in 3000ms;
+    transition: ease-in 3000ms;
+  }
+  .mynav:hover {
+    background-color: #212121;
+  }
+  .mynav:hover * {
+    color: #ffffff;
+  }
+  .cliplist:not(:hover) .menu-list-item-active {
+    -webkit-transition: ease-in 3000ms;
+    transition: ease-in 3000ms;
+    background-color: #212121c5;
+  }
+  .cliplist:hover {
+    background-color: #212121;
   }
   .clip__item:hover {
-    background-color: #575047;
-  }
-  .clip__item.menu-list-item-active:hover {
-    background-color: cornflowerblue;
+    background-color: rgba(188, 133, 255, 0.253);
   }
   .menu-list-item-active {
-    background-color: cornflowerblue;
+    background-color: rgba(100, 149, 237, 0.548);
+  }
+  .clip__item.menu-list-item-active:hover {
+    background-color: rgba(100, 149, 237, 0.548);
+  }
+  #settings,
+  #chat,
+  #bonus,
+  #info {
+    background-color: #212121;
   }
 }
 
 @media (prefers-color-scheme: light) {
-  .menu-list-item-active {
-    background-color: lightgreen;
+  textarea {
+    background-color: #ffffff;
   }
-  body > * {
-    -webkit-transition: ease-in-out 2000ms;
-    transition: ease-in-out 2000ms;
-    -webkit-filter: blur(0.8rem);
-            filter: blur(0.8rem);
+  #notification_update {
+    background-color: #ffffff;
   }
-  body:hover {
-    -webkit-transition: ease-in-out 100ms;
-    transition: ease-in-out 100ms;
-    background-color: white;
+  .mynav {
+    color: rgba(230, 230, 230, 0.275);
+    background-color: rgba(255, 255, 255, 0.275);
+  }
+  .mynav .nav__item {
+    -webkit-transition: ease-in 3000ms;
+    transition: ease-in 3000ms;
+  }
+  .mynav:hover {
+    background-color: #ffffff;
+  }
+  .mynav:hover * {
     color: #212121;
   }
-  body:hover > * {
-    -webkit-transition: ease-in-out 50ms;
-    transition: ease-in-out 50ms;
-    -webkit-filter: blur(0);
-            filter: blur(0);
+  .cliplist:hover {
+    background-color: #ffffff;
   }
-  body:not(:hover) .menu-list-item-active {
-    -webkit-transition: ease-in-out 2000ms;
-    transition: ease-in-out 2000ms;
-    -webkit-filter: brightness(50%);
-            filter: brightness(50%);
-    opacity: 0.3;
+  .cliplist:hover {
+    background-color: #ffffff;
   }
   .clip__item:hover {
-    background-color: antiquewhite;
+    background-color: rgba(255, 186, 96, 0.253);
+  }
+  .menu-list-item-active {
+    background-color: rgba(144, 238, 144, 0.548);
   }
   .clip__item.menu-list-item-active:hover {
-    background-color: lightgreen;
+    background-color: rgba(144, 238, 144, 0.548);
   }
-  /* .night.light-scheme { background:  #eee; color: black; } */
+  #settings,
+  #chat,
+  #bonus,
+  #info {
+    background-color: #ffffff;
+  }
 }
 
-/* Minimum aspect ratio */
-/* @media (min-width: 350px) {
-  .main {
-    grid-template-areas: 
-    "nav      nav     nav"
-    "content  content content"
-    "content  content content"
-    "content  content content"
-    ;
-  }
-} */
-/* Maximum aspect ratio */
+.mynav:not(:hover) {
+  -webkit-transition: ease-in 3000ms;
+  transition: ease-in 3000ms;
+}
+
+.cliplist:not(:hover) {
+  -webkit-transition: ease-in-out 3000ms;
+  transition: ease-in-out 3000ms;
+  -webkit-filter: saturate(50%);
+          filter: saturate(50%);
+}
+
+.cliplist .clip__item:not(:hover):not(.menu-list-item-active) {
+  background-color: transparent;
+}
+
+.cliplist:not(:hover) *:not(.menu-list-item-active) {
+  -webkit-transition: ease-in 3000ms;
+  transition: ease-in 3000ms;
+  background-color: transparent;
+  -webkit-filter: blur(0.8rem);
+          filter: blur(0.8rem);
+  color: rgba(128, 128, 128, 0.568);
+}
+
 @media (max-width: 350px) {
   .main {
         grid-template-areas: "content" "nav";

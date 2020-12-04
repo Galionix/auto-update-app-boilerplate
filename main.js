@@ -85,6 +85,8 @@ app.on("activate", function () {
     }
 });
 
+app.on('activate', () => { win.show() })
+
 ipcMain.on("app_version", (event) => {
     event.sender.send("app_version", {
         version: app.getVersion()
@@ -97,12 +99,23 @@ autoUpdater.on('update-available', () => {
     updating=true;
     mainWindow.webContents.send('update_available');
   });
+autoUpdater.on('app-restart', () => {
+  app.relaunch();
+  app.exit(0);
+  });
+
+
+
   autoUpdater.on('update-downloaded', () => {
     updating=true;
     mainWindow.webContents.send('update_downloaded');
   });
 
 
-  ipcMain.on('restart_app', () => {
-    autoUpdater.quitAndInstall();
-  });
+ 
+
+  ipcMain.on("app-restart", (event) => {
+
+    app.relaunch();
+    app.exit(0);
+});

@@ -12,26 +12,39 @@ const restartButton = document.getElementById("restart-button");
 
 ipcRenderer.on("update_available", () => {
   ipcRenderer.removeAllListeners("update_available");
-  message.innerText = "Доступно обновление. Загружаем...";
+  message.innerHTML = 'Доступно <a class="open-in-browser" title="Почитать о выпуске" href="https://github.com/Galionix/electron_Call-Help/releases/latest">обновление</a>. Загружаем...';
   notification.classList.remove("hidden");
+
+  $('.open-in-browser').on("click", (event) => {
+    event.preventDefault();
+    shell.openExternal(event.target.href);
 });
 
-// message.innerText = "A new update is available. Downloading now...";
+});
+
+// message.innerHTML = 'Доступно <a class="open-in-browser" title="Почитать о выпуске" href="https://github.com/Galionix/electron_Call-Help/releases/latest">обновление</a>. Загружаем...';
 // notification.classList.remove("hidden");
 
 
 ipcRenderer.on("update_downloaded", () => {
   ipcRenderer.removeAllListeners("update_downloaded");
-  message.innerText =
-    "Обновление загружено и будет установлено при перезапуске. Перезапустить сейчас?";
+  message.innerHTML =
+    '<a class="open-in-browser" title="Почитать о выпуске" href="https://github.com/Galionix/electron_Call-Help/releases/latest">Обновление</a> загружено и будет установлено при перезапуске. Перезапустить сейчас?';
   restartButton.classList.remove("hidden");
   notification.classList.remove("hidden");
+  $('.open-in-browser').on("click", (event) => {
+    event.preventDefault();
+    shell.openExternal(event.target.href);
 });
-// message.innerText =
-//   "Update Downloaded. It will be installed on restart. Restart now?";
+});
+// message.innerHTML =
+// '<a class="open-in-browser" title="Почитать о выпуске" href="https://github.com/Galionix/electron_Call-Help/releases/latest">Обновление</a> загружено и будет установлено при перезапуске. Перезапустить сейчас?';
 // restartButton.classList.remove("hidden");
 // notification.classList.remove("hidden");
-
+$('.open-in-browser').on("click", (event) => {
+  event.preventDefault();
+  shell.openExternal(event.target.href);
+});
 
 function closeNotification() {
   notification.classList.add("hidden");
