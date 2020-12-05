@@ -528,6 +528,10 @@ body div.main > div.mynav > ul.nav_list > li#menu_bonus:hover i {
   color: red;
 }
 
+body div.main > div.mynav > ul.nav_list > li#menu_close:hover i {
+  color: red;
+}
+
 body div.main #cliplist {
   cursor: default;
   -ms-grid-row: 2;

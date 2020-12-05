@@ -124,3 +124,9 @@ autoUpdater.on('update-available', () => {
     app.relaunch();
     app.exit(0);
 });
+
+  ipcMain.on("app_close", (event) => { app.exit(0); });
+  const { remote } = require('electron')
+  ipcMain.on("app_minimize", (event) => {
+     remote.BrowserWindow.getFocusedWindow().minimize();
+     });

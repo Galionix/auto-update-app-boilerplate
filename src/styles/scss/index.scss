@@ -176,6 +176,14 @@ content: " \f08e";
 
           >div {}
         }
+        >li#menu_minimize {
+      
+        }
+        >li#menu_close {
+          &:hover i {
+            color: red;
+          }
+        }
       }
     }
 
