@@ -17,6 +17,10 @@ var ipc = require('electron').ipcRenderer;
   
 }
 
+var transparency_toggle;
+if (localStorage.getItem("transparency_toggle")=="true") 
+transparency_toggle=true; 
+else transparency_toggle=false;
 
 
 
@@ -76,17 +80,17 @@ function renewClips() {
 }
 renewClips();
 
-$( "#menu_cliplist" ).on("mouseup", renewClips());
 
-// console.log(document.getElementById('cliplist'))
+$( "#menu_cliplist" ).on("mouseup", renewClips());
 
 
 
 var date_text = function(){
 
-  var currentdate = new Date();
-  // getMonth(currentdate.getMonth()+1)
-  return `[${ addZero(currentdate.getDay()-1 ) }.${ addZero(currentdate.getMonth()+1)} ${addZero(currentdate.getHours())}:${addZero(currentdate.getMinutes()) }] `;
+  let currentdate = new Date();
+  console.log('day '+currentdate.getDate() );
+  
+  return `[${ addZero(currentdate.getDate() ) }.${ addZero(currentdate.getMonth()+1)} ${addZero(currentdate.getHours())}:${addZero(currentdate.getMinutes()) }] `;
 }
 
 let prev_text = document.getElementById('selectable').textContent;
@@ -183,15 +187,8 @@ console.log(num.toString().length);
 $('.clip__item').on("mouseup", function(){
   document.getElementById('selectable').textContent = prev_text;
 
-// console.log(`elem ${$( this ).text()}`);
 
-// let o_date = new Intl.DateTimeFormat;
-// let f_date = (m_ca, m_it) => Object({...m_ca, [m_it.type]: m_it.value});
-// let m_date = o_date.formatToParts().reduce(f_date, {});
-
-// console.log(m_date.day + '.' + m_date.month );
 var currentdate = new Date();
-// getMonth(currentdate.getMonth()+1)
 navigator.clipboard.writeText(date_text()+$( this ).text());
 
 unselect_all_cliplist_items();
@@ -234,3 +231,26 @@ $("#statuses").on("keyup", function(e){
   //localStorage["user"] = user ;
   localStorage.setItem("statuses", statuses) ;
 });
+
+function applyTransparency() {
+ if (transparency_toggle)
+ {
+   $('#cliplist').addClass("transparentable");
+   $('#mynav').addClass("transparentable");
+   localStorage.setItem('transparency_toggle',"true");
+ }
+ else{
+  $('#cliplist').removeClass("transparentable");
+  $('#mynav').removeClass("transparentable");
+  localStorage.setItem('transparency_toggle',"false");
+ }
+}
+
+$('#transparency_switch').on('mouseup', function () {
+  transparency_toggle=!transparency_toggle;
+  
+  applyTransparency();
+  console.log(transparency_toggle)
+});
+
+applyTransparency();

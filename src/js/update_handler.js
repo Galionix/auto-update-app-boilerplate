@@ -12,35 +12,69 @@ const restartButton = document.getElementById("restart-button");
 
 ipcRenderer.on("update_available", () => {
   ipcRenderer.removeAllListeners("update_available");
-  message.innerHTML = 'Доступно <a class="open-in-browser" title="Почитать о выпуске" href="https://github.com/Galionix/electron_Call-Help/releases/latest">обновление</a>. Загружаем...';
+  message.innerHTML = 'Доступно обновление. Загружаем...';
   notification.classList.remove("hidden");
 
-  $('.open-in-browser').on("click", (event) => {
-    event.preventDefault();
-    shell.openExternal(event.target.href);
+ 
 });
 
-});
-
-// message.innerHTML = 'Доступно <a class="open-in-browser" title="Почитать о выпуске" href="https://github.com/Galionix/electron_Call-Help/releases/latest">обновление</a>. Загружаем...';
+// message.innerHTML = 'Доступно обновление. Загружаем...';
 // notification.classList.remove("hidden");
 
 
 ipcRenderer.on("update_downloaded", () => {
   ipcRenderer.removeAllListeners("update_downloaded");
   message.innerHTML =
-    '<a class="open-in-browser" title="Почитать о выпуске" href="https://github.com/Galionix/electron_Call-Help/releases/latest">Обновление</a> загружено и будет установлено при перезапуске. Перезапустить сейчас?';
+    'Обновление загружено и будет установлено при перезапуске. Перезапустить сейчас?';
   restartButton.classList.remove("hidden");
   notification.classList.remove("hidden");
-  $('.open-in-browser').on("click", (event) => {
-    event.preventDefault();
-    shell.openExternal(event.target.href);
+
 });
-});
+const update_text = document.getElementById("update_description");
+
+(async () => {
+  let response = await fetch('https://api.github.com/repos/Galionix/electron_Call-Help/releases/latest');
+  if (response.ok) { 
+
+let jsonbody = await response.json();
+console.log('json '+ jsonbody['body']); 
+update_text.innerHTML =jsonbody['body'];
+
+}
+else  update_text.innerHTML = 'Ошибка получения описания. Воспользуйтесь <a class="open-in-browser" title="Почитать о выпуске" href="https://github.com/Galionix/electron_Call-Help/releases/latest">ссылкой</a> чтобы прочитать заметки о выпуске.';
+
+update_text.style.opacity = 1
+notification.classList.add("upd_text_revealed");
+// $('notification_update').addClass('upd_text_revealed');
+// update_text.classList.add("upd_text_revealed");
+
+
+
+
+
+
+
+ 
+$('.open-in-browser').on("click", (event) => {
+  event.preventDefault();
+  shell.openExternal(event.target.href);
+});  
+  
+})();
+
+
+
+
+
+// test
 // message.innerHTML =
-// '<a class="open-in-browser" title="Почитать о выпуске" href="https://github.com/Galionix/electron_Call-Help/releases/latest">Обновление</a> загружено и будет установлено при перезапуске. Перезапустить сейчас?';
+// 'Обновление загружено и будет установлено при перезапуске. Перезапустить сейчас?';
 // restartButton.classList.remove("hidden");
 // notification.classList.remove("hidden");
+
+
+
+
 $('.open-in-browser').on("click", (event) => {
   event.preventDefault();
   shell.openExternal(event.target.href);
@@ -51,6 +85,6 @@ function closeNotification() {
 }
 
 function restartApp() {
-  // alert('Hi!')
-  ipcRenderer.send("restart_app");
+  //  alert('Hi!')
+  ipcRenderer.send("app-restart");
 }

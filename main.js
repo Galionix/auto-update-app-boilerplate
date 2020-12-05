@@ -57,7 +57,7 @@ function createWindow() {
         mainWindow = null;
     });
     mainWindow.removeMenu();
-    // mainWindow.webContents.openDevTools();
+    
     // mainWindow.webContents.openDevTools({mode:'undocked'})
 
     mainWindow.once('ready-to-show', () => {
@@ -99,10 +99,15 @@ autoUpdater.on('update-available', () => {
     updating=true;
     mainWindow.webContents.send('update_available');
   });
-autoUpdater.on('app-restart', () => {
-  app.relaunch();
-  app.exit(0);
-  });
+
+
+
+// autoUpdater.on('app-restart', () => {
+//   console.log('restart called');
+  
+//   app.relaunch();
+//   app.exit(0);
+//   });
 
 
 

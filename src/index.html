@@ -6,7 +6,8 @@
     <title>Hello World!</title>
 
     <link rel="stylesheet" href="styles/css/index.css">
-    <link rel="stylesheet" href="styles/css/light.css">
+    <!-- <link rel="stylesheet" href="styles/css/light.css"> -->
+    <link rel="stylesheet" href="styles/css/all.min.css">
     <link rel="stylesheet" href="styles/css/fontawesome.min.css">
     <script src="js/vendor/jquery-3.5.1.min.js"></script>
     <script>
@@ -15,10 +16,12 @@
   </head>
 
   <body>
-    <div class="main">
+    <div class="main ">
+<!--
+transparentable
+-->
 
-
-      <div class="mynav">
+      <div id='mynav' class="mynav">
         <ul class="nav_list">
           <li id="menu_cliplist" class="nav__item stats">
             <!-- <span class="fa-stack fa-2x">
@@ -29,9 +32,7 @@
             <div class="">Статусы</div>
           </li>
           <li id="menu_settings" class="nav__item settings">
-            <!-- <span class="fa-stack fa-2x">
-              <i class="fal fa-square fa-stack-2x"></i>
-            </span> -->
+         
             <i class="fal fa-cog"></i>
 
             <div class="">Настройки</div>
@@ -65,9 +66,12 @@
         </ul>
 
       </div>
-
-
-      <div id="cliplist" class="cliplist">
+ 
+<!--
+transparentable
+-->
+      <div id="cliplist" class="cliplist ">
+     
         <div class="clip__item" id="selectable" >нет ответа</div>
         <div class="clip__item">нет ответа + письмо отправлено </div>
         <div class="clip__item">автоответчик</div>
@@ -94,7 +98,24 @@
         <div class="title">Статусы</div>
 
         <textarea  class="title" name="statuses" id="statuses" cols="30" rows="10">some text</textarea>
-<button onclick="my_restart()">Применить</button>
+        <button  class="button btn-ok" onclick="my_restart()">Применить</button>
+
+<div class='setting_item'> <p>Прозрачность</p>
+        <div id='transparency_switch' class="toggle">
+          <input type="checkbox" name="toggle" class="check-checkbox" id="mytoggle">
+          <label class="check-label" for="mytoggle">
+            <div id="background"></div>
+            <span class="face">
+              <span class="face-container">
+                <span class="eye left"></span>
+                <span class="eye right"></span>
+                <span class="mouth"></span>
+              </span>
+            </span>
+          </label>
+        </div>
+      </div>
+
       </div>
       <div id="chat" >
 
@@ -131,10 +152,13 @@
 
     <div id="notification_update" class="hidden">
       <p id="message"></p>
+
+  
+      <p id="update_description">проверка не слетела ли автообнова проверка не слетела ли автообнова проверка не слетела ли автообнова проверка не слетела ли автообнова проверка не слетела ли автообнова</p>
       <button id="close-button"  title="Close" onClick="closeNotification()">
         <i class="fal fa-times-circle fa-lg"></i>
       </button>
-      <button id="restart-button" onClick="restartApp()" class="hidden">
+      <button id="restart-button" class="button btn-danger" onClick="restartApp()" class="hidden">
         <i class="fal fa-redo"></i>
         Restart
       </button>
